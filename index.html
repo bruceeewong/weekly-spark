@@ -111,6 +111,7 @@
     }
 
     .slogan {
+      display: block;
       grid-area: slogan;
       padding-bottom: 56px;
     }
@@ -241,80 +242,116 @@
   <div class="container grid-container">
     <div class="part-1">
       <section class="culture-day section-container">
-        <svg>
+        <svg class="animate__animated animate__bounceIn">
           <use xlink:href="#culture-day"></use>
         </svg>
       </section>
       <section class="h-line-1 section-container">
-        <svg style="padding: ;">
+        <svg class="animate__animated animate__slideInLeft">
           <use xlink:href="#h-line-1"></use>
         </svg>
       </section>
       <section class="dolphin section-container">
-        <svg>
+        <svg class="animate__animated animate__rotateInUpLeft">
           <use xlink:href="#dolphin"></use>
         </svg>
       </section>
       <section class="h-line-2 section-container">
-        <svg>
+        <svg class="animate__animated animate__slideInLeft">
           <use xlink:href="#h-line-2"></use>
         </svg>
       </section>
       <section class="bee section-container">
-        <svg>
+        <svg class="animate__animated animate__shakeY">
           <use xlink:href="#bee"></use>
         </svg>
       </section>
       <section class="tech-for-good section-container">
-        <svg>
+        <svg class="animate__animated animate__lightSpeedInLeft">
           <use xlink:href="#tech-for-good"></use>
         </svg>
       </section>
     </div>
     <div class="part-2 section-container">
-      <main class="slogan">
-        <svg>
+      <section class="slogan">
+        <svg class="animate__animated animate__zoomIn">
           <use xlink:href="#slogan"></use>
         </svg>
-      </main>
+      </section>
       <section class="action-now">
-        <svg>
+        <svg class="animate__animated animate__slideInUp">
           <use xlink:href="#action-now"></use>
         </svg>
       </section>
       <section class="arrow-2020">
-        <svg>
+        <svg class="animate__animated animate__slideInUp">
           <use xlink:href="#2020"></use>
         </svg>
       </section>
     </div>
     <div class="part-3">
       <section class="bird section-container">
-        <svg>
+        <svg class="animate__animated animate__fadeInTopRight">
           <use xlink:href="#bird"></use>
         </svg>
       </section>
       <section class="sense-of-worth section-container">
-        <svg>
+        <svg class="animate__animated animate__zoomIn">
           <use xlink:href="#sense-of-worth"></use>
         </svg>
       </section>
       <section class="h-line-3 section-container">
-        <svg>
+        <svg class="animate__animated animate__slideInLeft">
           <use xlink:href="#h-line-3"></use>
         </svg>
       </section>
       <section class="timeline section-container">
-        <svg>
+        <svg class="animate__animated animate__fadeInLeft">
           <use xlink:href="#timeline"></use>
         </svg>
       </section>
       <section class="giraffe section-container">
-        <svg>
+        <svg class="animate__animated animate__slideInUp">
           <use xlink:href="#giraffe"></use>
         </svg>
       </section>
     </div>
   </div>
+
+  <script>
+    var container = document.querySelector('.container')
+    var sectionList = container.querySelectorAll('section')
+    var svgList = container.querySelectorAll('svg')
+    var unKnownCount = svgList.length
+
+    // 全部点亮后，边框也点亮
+    function createCountTolightUpBorder(totalSvgLength) {
+      var count = 0
+      return function () {
+        count ++
+        if (count >= totalSvgLength) {
+          container.style.borderImageSource = 'url(img/1x/border.png)'
+        }
+      }
+    }
+
+    var countToLightUpBorder = createCountTolightUpBorder(svgList.length)
+    container.style.borderImageSource = 'url(img/1x/border.png)'
+    for (var i = 0, len = sectionList.length; i < len; i ++) {
+      var svgChild =  sectionList[i].querySelector('svg')
+      // 首先页面加载时，将svg节点从dom树种移除，显示白板效果
+      // sectionList[i].removeChild(svgChild)
+      // 给每个包裹svg的container设置点击&hover事件，插入对应的svg节点，加载动画
+      sectionList[i].addEventListener('mouseenter', (function(self, svg) {
+        return function() {
+          // 防止重复插入节点
+          if (!self.querySelector('svg')) {
+            self.appendChild(svg)
+            countToLightUpBorder()
+          }
+        }
+      })(sectionList[i], svgChild))
+    }
+  </script>
 </body>
 </html>
