@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>祝腾讯22周年生日快乐🎂</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    body {
+      display: grid;
+      justify-content: center;
+      align-content: center;
+    }
+    .container {
+      box-sizing: border-box;
+      width: 1700px; 
+      height: 766px;
+      border: 64px solid transparent;
+      border-image-source:  url(img/1x/border.png);
+      border-image-slice: 64;
+    }
+    .grid-container {
+      display: grid;
+      grid-template-columns: 505px 565px 505px;
+    }
+    .part-1 {
+      display: grid;
+      grid-template-columns: 283px 222px;
+      grid-template-rows: 110px 173px 49px 74px 234px;
+      grid-template-areas:
+        "culture-day h-line-1"
+        "culture-day bee"
+        "h-line-2 bee"
+        "dolphin bee"
+        "dolphin tech-for-good";
+    }
+    .culture-day {
+      grid-area: culture-day;
+      background-color: #000000;
+    }
+    .h-line-1 {
+      grid-area: h-line-1;
+      background-color: #A9ADAE;
+    }
+    .dolphin {
+      grid-area: dolphin;
+      background-color: #00A9CF;
+    }
+    .h-line-2 {
+      grid-area: h-line-2;
+      background-color: #00A9CF;
+    }
+    .bee {
+      grid-area: bee;
+      background-color: #A602BA;
+    }
+    .tech-for-good {
+      grid-area: tech-for-good;
+      background-color: #FF5A00;
+    }
+
+    .part-2 {
+      background-color: #0050DE;
+    }
+
+    .part-3 {
+      display: grid;
+      grid-template-columns: 197px 99px 209px;
+      grid-template-rows: 222px 61.5px 357.5px;
+      grid-template-areas:
+        "bird sense-of-worth sense-of-worth"
+        "h-line-3 sense-of-worth sense-of-worth"
+        "timeline timeline giraffe"
+    }
+    .bird {
+      grid-area: bird;
+      background-color: #FF5A00;
+    }
+    .sense-of-worth {
+      grid-area: sense-of-worth;
+      background-color: #00A9CF;
+    }
+    .h-line-3 {
+      grid-area: h-line-3;
+      background-color: #000000;
+    }
+    .timeline {
+      grid-area: timeline;
+      background-color: #A602BA;
+    }
+    .giraffe {
+      grid-area: giraffe;
+      background-color: #FF5A00;
+    }
+  </style>
+</head>
+<body>
+  <div class="container grid-container">
+    <div class="part-1">
+      <section class="culture-day"></section>
+      <section class="h-line-1"></section>
+      <section class="dolphin"></section>
+      <section class="h-line-2"></section>
+      <section class="bee"></section>
+      <section class="tech-for-good"></section>
+    </div>
+    <div class="part-2">
+      <main class="slogan"></main>
+      <section class="action-now"></section>
+      <section class="2020-arrow"></section>
+    </div>
+    <div class="part-3">
+      <section class="bird"></section>
+      <section class="sense-of-worth"></section>
+      <section class="h-line-3"></section>
+      <section class="timeline"></section>
+      <section class="giraffe"></section>
+    </div>
+  </div>
+</body>
+</html>
