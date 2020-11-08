@@ -2,8 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>祝腾讯22周年生日快乐🎂</title>
+  <title>Happy Birthday to Tencent🎂</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <style>
     * {
@@ -26,21 +25,21 @@
     }
     body {
       display: grid;
+      box-sizing: border-box;
       justify-content: center;
       align-content: center;
-      height: 100vh;
+
+      min-height: 100vh;
     }
     .container {
       box-sizing: border-box;
-      width: 1700px; 
-      /* height: 766px; */
-      border: 64px solid transparent;
-      border-image-source:  url(img/1x/border.png);
+      border: 62.5px solid transparent;
+      border-image-source: url(img/border.png);
       border-image-slice: 62.5;
     }
     .grid-container {
       display: grid;
-      grid-template-columns: 505px 565px 505px;
+      grid-template-columns: repeat(3, 505px);
     }
     .part-1 {
       display: grid;
@@ -102,7 +101,7 @@
 
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: 1fr auto;
+      grid-template-rows: 1fr 75px;
       grid-template-areas: 
         "slogan slogan"
         "action-now arrow-2020";
@@ -121,7 +120,6 @@
     }
     .action-now svg {
       width: 167.6px;
-      height: 75px;
     }
     .arrow-2020 {
       grid-area: arrow-2020;
@@ -129,7 +127,6 @@
     }
     .arrow-2020 svg {
       width: 132px;
-      height: 75px;
     }
 
     .part-3 {
@@ -321,33 +318,17 @@
   <script>
     var container = document.querySelector('.container')
     var sectionList = container.querySelectorAll('section')
-    var svgList = container.querySelectorAll('svg')
-    var unKnownCount = svgList.length
 
-    // 全部点亮后，边框也点亮
-    function createCountTolightUpBorder(totalSvgLength) {
-      var count = 0
-      return function () {
-        count ++
-        if (count >= totalSvgLength) {
-          container.style.borderImageSource = 'url(img/1x/border.png)'
-        }
-      }
-    }
-
-    var countToLightUpBorder = createCountTolightUpBorder(svgList.length)
-    container.style.borderImageSource = 'url(img/1x/border.png)'
     for (var i = 0, len = sectionList.length; i < len; i ++) {
+      // 首先页面加载时，将svg节点从dom树中移除，显示白板效果
       var svgChild =  sectionList[i].querySelector('svg')
-      // 首先页面加载时，将svg节点从dom树种移除，显示白板效果
-      // sectionList[i].removeChild(svgChild)
+      sectionList[i].removeChild(svgChild)
       // 给每个包裹svg的container设置点击&hover事件，插入对应的svg节点，加载动画
       sectionList[i].addEventListener('mouseenter', (function(self, svg) {
         return function() {
           // 防止重复插入节点
           if (!self.querySelector('svg')) {
             self.appendChild(svg)
-            countToLightUpBorder()
           }
         }
       })(sectionList[i], svgChild))
